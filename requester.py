@@ -1,6 +1,10 @@
 # This example requires the requests library be installed.  You can learn more
 # about the Requests library here: http://docs.python-requests.org/en/latest/
-from requests import get
+import requests
+import json
+ip = requests.get('https://api.ipify.org?format=json').json()
 
-ip = get('https://api.ipify.org').text
-print('My public IP address is: {}'.format(ip))
+print(ip)
+
+with open('public_ip.json', 'w') as outfile:
+    json.dump(ip, outfile)
